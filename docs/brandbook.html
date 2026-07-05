@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SidPro AUTO — Брендбук</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F14;
+      --surface: #141A22;
+      --surface-2: #1E2732;
+      --text: #F4F6F8;
+      --text-muted: #98A4B3;
+      --accent: #E11D2E;
+      --accent-hover: #B91626;
+      --border: #26303C;
+      --success: #2FBF71;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Montserrat', sans-serif; font-size: 16px; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3 { font-family: 'Unbounded', sans-serif; line-height: 1.2; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* Cover */
+    .cover {
+      position: relative; padding: 120px 0 100px; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .cover::before {
+      content: ''; position: absolute; top: -40%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(225,29,46,.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cover .tag {
+      display: inline-block; font-size: 13px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+      border: 1px solid rgba(225,29,46,.4); border-radius: 100px;
+      padding: 7px 18px; margin-bottom: 28px;
+    }
+    .cover h1 { font-size: clamp(34px, 6vw, 58px); font-weight: 700; }
+    .cover h1 span { color: var(--accent); }
+    .cover p { color: var(--text-muted); margin-top: 18px; font-size: 18px; max-width: 520px; }
+
+    section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .sec-num {
+      font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 600;
+      color: var(--accent); letter-spacing: .12em; margin-bottom: 12px;
+    }
+    h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 600; margin-bottom: 14px; }
+    .lead { color: var(--text-muted); max-width: 640px; margin-bottom: 40px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    /* Brand essence */
+    .value-chip {
+      display: inline-block; background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 100px; padding: 8px 18px; font-weight: 600; font-size: 14.5px;
+      margin: 0 8px 10px 0;
+    }
+    .tone-list { list-style: none; margin-top: 8px; }
+    .tone-list li { padding: 10px 0 10px 30px; position: relative; color: var(--text-muted); border-bottom: 1px dashed var(--border); }
+    .tone-list li:last-child { border-bottom: none; }
+    .tone-list li::before {
+      content: ''; position: absolute; left: 4px; top: 19px;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    }
+    .slogan { font-family: 'Unbounded', sans-serif; font-size: 19px; font-weight: 600; padding: 22px 26px; }
+    .slogan small { display: block; font-family: 'Montserrat', sans-serif; font-weight: 500; color: var(--text-muted); font-size: 13px; margin-top: 8px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Logo section */
+    .logo-demo {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 200px; border-radius: 16px; margin-bottom: 18px;
+      font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(30px, 5vw, 48px);
+    }
+    .logo-demo span { color: var(--accent); }
+    .logo-dark { background: var(--surface); border: 1px solid var(--border); }
+    .logo-light { background: #F4F6F8; color: #0B0F14; }
+    .logo-rules { color: var(--text-muted); font-size: 14.5px; }
+    .logo-rules b { color: var(--text); }
+
+    /* Colors */
+    .swatch { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .swatch .chip { height: 110px; position: relative; }
+    .swatch .chip .hex {
+      position: absolute; bottom: 10px; left: 14px;
+      font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 600;
+      background: rgba(11,15,20,.55); backdrop-filter: blur(6px);
+      padding: 4px 10px; border-radius: 8px; color: #fff;
+    }
+    .swatch .meta { background: var(--surface); padding: 14px 16px; }
+    .swatch .meta .name { font-weight: 700; font-size: 15px; }
+    .swatch .meta .role { color: var(--text-muted); font-size: 13.5px; margin-top: 2px; }
+    .contrast-note {
+      margin-top: 24px; padding: 16px 20px; border-radius: 12px;
+      background: rgba(47,191,113,.08); border: 1px solid rgba(47,191,113,.3);
+      color: var(--success); font-size: 14.5px; font-weight: 600;
+    }
+
+    /* Typography */
+    .type-demo { padding: 34px 30px; margin-bottom: 18px; }
+    .type-demo .font-name { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 16px; font-family: 'Montserrat', sans-serif; }
+    .type-demo .sample-display { font-family: 'Unbounded', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; }
+    .type-demo .sample-body { font-size: 17px; color: var(--text-muted); max-width: 560px; }
+    .type-scale { width: 100%; border-collapse: collapse; }
+    .type-scale td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .type-scale tr:last-child td { border-bottom: none; }
+    .type-scale .tok { font-family: 'Unbounded', sans-serif; font-size: 12px; color: var(--accent); white-space: nowrap; }
+    .type-scale .sz { color: var(--text-muted); font-size: 13.5px; white-space: nowrap; }
+
+    /* UI kit */
+    .ui-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--accent); color: #fff; border: none; border-radius: 12px;
+      padding: 14px 28px; min-height: 48px; font-weight: 700; font-size: 15px;
+      font-family: 'Montserrat', sans-serif; cursor: pointer;
+      transition: background .2s ease-out, box-shadow .3s ease-out;
+    }
+    .btn:hover { background: var(--accent-hover); box-shadow: 0 8px 32px rgba(225,29,46,.35); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { background: var(--surface-2); box-shadow: none; }
+    .demo-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 16px;
+      padding: 24px; max-width: 320px;
+      transition: transform .25s ease-out, border-color .25s ease-out;
+    }
+    .demo-card:hover { transform: translateY(-4px); border-color: #3A4757; }
+    .demo-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .demo-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
+    .demo-card .price { font-weight: 700; }
+    .demo-card .price em { font-style: normal; color: var(--accent); }
+    .kv { color: var(--text-muted); font-size: 14.5px; }
+    .kv b { color: var(--text); }
+
+    /* Structure */
+    .struct { list-style: none; counter-reset: s; }
+    .struct li {
+      counter-increment: s; position: relative;
+      padding: 16px 18px 16px 66px; margin-bottom: 10px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .struct li::before {
+      content: '0' counter(s);
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 700; color: var(--accent);
+    }
+    .struct b { display: block; }
+    .struct span { color: var(--text-muted); font-size: 14px; }
+
+    /* Contacts table */
+    .contacts td { padding: 13px 16px; border-bottom: 1px solid var(--border); }
+    .contacts tr:last-child td { border-bottom: none; }
+    .contacts { width: 100%; border-collapse: collapse; }
+    .contacts .k { color: var(--text-muted); font-size: 14px; white-space: nowrap; }
+    .contacts .v { font-weight: 600; }
+
+    footer { padding: 40px 0 60px; color: var(--text-muted); font-size: 14px; }
+
+    @media (max-width: 720px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      section { padding: 52px 0; }
+      .cover { padding: 80px 0 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="container">
+      <span class="tag">Брендбук · v1.0 · июль 2026</span>
+      <h1>SIDPRO<span>/AUTO</span></h1>
+      <p>Руководство по фирменному стилю детейлинг-студии.<br>г. Саранск, ул. Севастопольская, 115</p>
+    </div>
+  </div>
+
+  <!-- 1. Brand -->
+  <section>
+    <div class="container">
+      <div class="sec-num">01 / СУТЬ БРЕНДА</div>
+      <h2>Студия, а не конвейер</h2>
+      <p class="lead">Премиальная детейлинг-студия с персональным подходом. Каждый автомобиль — проект, а не позиция в очереди. Рейтинг 5.0★ на картах подтверждает подход.</p>
+
+      <div style="margin-bottom: 28px;">
+        <span class="value-chip">Перфекционизм</span>
+        <span class="value-chip">Честность в цене и сроках</span>
+        <span class="value-chip">Забота как о своём авто</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size:16px; margin-bottom:10px;">Тон коммуникации</h3>
+          <ul class="tone-list">
+            <li>Уверенный, но без пафоса</li>
+            <li>На «вы», по-дружески профессионально</li>
+            <li>Конкретика: цифры, сроки, материалы</li>
+            <li>Без кричащих «АКЦИЯ!!!» и давления</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card slogan" style="margin-bottom: 14px;">«Детейлинг, после которого машину не узнать»<small>основной слоган</small></div>
+          <div class="card slogan">«Заводской вид. И лучше.»<small>альтернатива</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Logo -->
+  <section>
+    <div class="container">
+      <div class="sec-num">02 / ЛОГОТИП</div>
+      <h2>Текстовый знак</h2>
+      <p class="lead">Логотип — наборный: «SIDPRO» основным цветом текста, «/AUTO» — акцентным красным. Начертание Unbounded 700.</p>
+      <div class="grid-2">
+        <div class="logo-demo logo-dark">SIDPRO<span>/AUTO</span></div>
+        <div class="logo-demo logo-light">SIDPRO<span>/AUTO</span></div>
+      </div>
+      <div class="card logo-rules">
+        <b>Правила:</b> минимальная высота — 24px · охранное поле — высота буквы «S» со всех сторон ·
+        <b>нельзя</b> растягивать, менять цвета местами, ставить на пёстрый фон без подложки.
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Colors -->
+  <section>
+    <div class="container">
+      <div class="sec-num">03 / ЦВЕТ</div>
+      <h2>Карбон и сигнальный красный</h2>
+      <p class="lead">Тёмная премиальная база — как лак и карбон. Красный — только для действий и акцентов, не более 10% площади экрана.</p>
+      <div class="grid-3">
+        <div class="swatch"><div class="chip" style="background:#0B0F14;"><span class="hex">#0B0F14</span></div><div class="meta"><div class="name">Карбон</div><div class="role">фон основной · --bg</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#141A22;"><span class="hex">#141A22</span></div><div class="meta"><div class="name">Графит</div><div class="role">карточки, секции · --surface</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1E2732;"><span class="hex">#1E2732</span></div><div class="meta"><div class="name">Сталь</div><div class="role">ховеры · --surface-2</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E11D2E;"><span class="hex">#E11D2E</span></div><div class="meta"><div class="name">Сигнальный красный</div><div class="role">CTA, акценты · --accent</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#B91626;"><span class="hex">#B91626</span></div><div class="meta"><div class="name">Красный тёмный</div><div class="role">hover · --accent-hover</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#26303C;"><span class="hex">#26303C</span></div><div class="meta"><div class="name">Тёмная сталь</div><div class="role">бордеры · --border</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F4F6F8;"><span class="hex">#F4F6F8</span></div><div class="meta"><div class="name">Белый лак</div><div class="role">текст основной · --text</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#98A4B3;"><span class="hex">#98A4B3</span></div><div class="meta"><div class="name">Серебро</div><div class="role">текст вторичный · --text-muted</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#2FBF71;"><span class="hex">#2FBF71</span></div><div class="meta"><div class="name">Зелёный</div><div class="role">успех, статусы · --success</div></div></div>
+      </div>
+      <div class="contrast-note">✓ Контраст проверен: #F4F6F8 на #0B0F14 = 17:1 · #98A4B3 на #0B0F14 = 7.2:1 — WCAG AA/AAA</div>
+    </div>
+  </section>
+
+  <!-- 4. Typography -->
+  <section>
+    <div class="container">
+      <div class="sec-num">04 / ТИПОГРАФИКА</div>
+      <h2>Unbounded + Montserrat</h2>
+      <p class="lead">Пара с полной поддержкой кириллицы: широкий техно-гротеск для заголовков и чистый, читаемый гротеск для текста.</p>
+      <div class="card type-demo">
+        <div class="font-name">Unbounded · заголовки · 500/600/700</div>
+        <div class="sample-display">Ваш автомобиль заслуживает большего</div>
+      </div>
+      <div class="card type-demo">
+        <div class="font-name">Montserrat · текст и интерфейс · 400–700</div>
+        <p class="sample-body">Студия SidPro AUTO в Саранске: трёхфазная мойка, полировка кузова, химчистка салона, тонировка и восстановление оптики. Сроки и цену озвучиваем до начала работ.</p>
+      </div>
+      <div class="card" style="padding: 10px 6px;">
+        <table class="type-scale">
+          <tr><td class="tok">display</td><td style="font-family:'Unbounded'; font-weight:700; font-size:30px;">Заголовок hero</td><td class="sz">44–64px · clamp</td></tr>
+          <tr><td class="tok">h2</td><td style="font-family:'Unbounded'; font-weight:600; font-size:24px;">Заголовок секции</td><td class="sz">32–40px</td></tr>
+          <tr><td class="tok">h3</td><td style="font-family:'Unbounded'; font-weight:600; font-size:18px;">Карточка, подзаголовок</td><td class="sz">20–24px</td></tr>
+          <tr><td class="tok">body</td><td style="font-size:16px;">Основной текст, line-height 1.6</td><td class="sz">16–18px</td></tr>
+          <tr><td class="tok">small</td><td style="font-size:14px; color:var(--text-muted);">Подписи и метки</td><td class="sz">14px</td></tr>
+          <tr><td class="tok">label</td><td style="font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600;">НАДЗАГОЛОВОК СЕКЦИИ</td><td class="sz">12–13px · caps</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. UI kit -->
+  <section>
+    <div class="container">
+      <div class="sec-num">05 / UI-КИТ И ЭФФЕКТЫ</div>
+      <h2>Живые компоненты</h2>
+      <p class="lead">Тёмный премиум с элементами liquid glass: полупрозрачные поверхности, мягкий blur, дозированное красное свечение. Анимации 200–400ms, ease-out.</p>
+      <div class="ui-row">
+        <button class="btn">Записаться на детейлинг</button>
+        <button class="btn btn-outline">+7 (917) 073-10-53</button>
+      </div>
+      <div class="ui-row">
+        <div class="demo-card">
+          <h3>Полировка кузова</h3>
+          <p>Убираем паутинку и голограммы, возвращаем лаку глубину и зеркальный блеск.</p>
+          <div class="price">от <em>8 000 ₽</em> · ~сутки</div>
+        </div>
+        <div class="kv" style="max-width: 360px;">
+          <p><b>Карточки:</b> фон --surface, бордер 1px --border, радиус 16px, hover — подъём на 4px</p>
+          <p style="margin-top:10px;"><b>Кнопки:</b> радиус 12px, высота ≥ 48px, свечение 0 8px 32px rgba(225,29,46,.35)</p>
+          <p style="margin-top:10px;"><b>Иконки:</b> только SVG (Lucide), stroke 1.8px. Эмодзи — запрещены</p>
+          <p style="margin-top:10px;"><b>Motion:</b> reveal при скролле, prefers-reduced-motion уважается</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Structure -->
+  <section>
+    <div class="container">
+      <div class="sec-num">06 / СТРУКТУРА САЙТА</div>
+      <h2>Лендинг, одна страница</h2>
+      <p class="lead">CTA-стратегия: телефон кликабелен везде, кнопка «Записаться» в шапке и hero, форма заявки в контактах.</p>
+      <ol class="struct">
+        <li><b>Hero</b><span>заголовок + рейтинг 5.0★ + CTA «Записаться» и телефон</span></li>
+        <li><b>Услуги</b><span>6 карточек: мойка, полировка, защита, химчистка, тонировка, оптика</span></li>
+        <li><b>Цены</b><span>таблица с подтверждёнными ценами, от 1 700 ₽</span></li>
+        <li><b>Почему мы</b><span>рейтинг, честная смета, материалы, персональный подход</span></li>
+        <li><b>Этапы</b><span>заявка → осмотр и смета → работа → приёмка</span></li>
+        <li><b>Отзывы</b><span>соцдоказательство, 5.0★ на 2ГИС</span></li>
+        <li><b>Контакты</b><span>адрес, телефон, график, VK + форма заявки</span></li>
+        <li><b>Футер</b><span>лого, адрес, соцсети</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 7. Contacts -->
+  <section style="border-bottom:none;">
+    <div class="container">
+      <div class="sec-num">07 / ДАННЫЕ КОМПАНИИ</div>
+      <h2>Контакты для всех носителей</h2>
+      <div class="card" style="padding: 10px 6px; margin-top: 28px;">
+        <table class="contacts">
+          <tr><td class="k">Телефон</td><td class="v">+7 (917) 073-10-53</td></tr>
+          <tr><td class="k">Адрес</td><td class="v">г. Саранск, ул. Севастопольская, 115</td></tr>
+          <tr><td class="k">График</td><td class="v">Пн–Пт 10:00–18:30 · Сб 10:00–17:00 · Вс — выходной</td></tr>
+          <tr><td class="k">ВКонтакте</td><td class="v"><a href="https://vk.com/sidpro_auto" target="_blank" rel="noopener">vk.com/sidpro_auto</a></td></tr>
+          <tr><td class="k">Рейтинг</td><td class="v">5.0★ на 2ГИС</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">SidPro AUTO · Брендбук v1.0 · подготовлен 05.07.2026 · исходные данные — docs/RESEARCH.md</div>
+  </footer>
+
+</body>
+</html>

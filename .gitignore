@@ -1,0 +1,10 @@
+# Сырые исходники из Instagram (фото + cookies) — не для репозитория
+insta/
+
+# Локальные настройки Claude
+.claude/
+
+# Системные
+Thumbs.db
+.DS_Store
+desktop.ini
