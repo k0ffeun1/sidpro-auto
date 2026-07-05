@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SidPro AUTO — мокапы блока «Материалы»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F14; --surface: #141A22; --surface-2: #1E2732;
+      --text: #F4F6F8; --text-muted: #98A4B3;
+      --accent: #E11D2E; --accent-hover: #B91626;
+      --border: #26303C; --radius: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3 { font-family: 'Unbounded', sans-serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    .label { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+
+    .mock-head { padding: 56px 0 28px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+    .mock-head h1 { font-size: clamp(22px, 3vw, 30px); }
+    .mock-head p { color: var(--text-muted); margin-top: 10px; max-width: 640px; }
+
+    .variant { padding: 60px 0; border-bottom: 2px dashed var(--border); }
+    .variant-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: 100px;
+      padding: 8px 20px; font-size: 13px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 32px;
+    }
+    .variant-tag em { font-style: normal; color: var(--accent); font-family: 'Unbounded', sans-serif; }
+    .sec-label { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* ============ V1 — карточки с описанием ============ */
+    .v1 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+    .v1-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px 24px; transition: transform .25s ease-out, border-color .25s ease-out;
+    }
+    .v1-card:hover { transform: translateY(-4px); border-color: #3A4757; }
+    .v1-ico { width: 46px; height: 46px; border-radius: 12px; margin-bottom: 18px;
+      background: rgba(225,29,46,.1); border: 1px solid rgba(225,29,46,.25);
+      display: flex; align-items: center; justify-content: center; }
+    .v1-ico svg { width: 23px; height: 23px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .v1-card h3 { font-family: 'Unbounded'; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .v1-card p { color: var(--text-muted); font-size: 14px; }
+
+    /* ============ V2 — крупные бейджи-логотипы ============ */
+    .v2 {
+      margin-top: 24px; padding: 34px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px;
+    }
+    .v2-head { max-width: 220px; }
+    .v2-head .t { font-family: 'Unbounded'; font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .v2-head .s { color: var(--text-muted); font-size: 13.5px; }
+    .v2-logos { display: flex; flex-wrap: wrap; gap: 14px; flex: 1; }
+    .v2-logo {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 22px; transition: border-color .2s ease-out;
+    }
+    .v2-logo:hover { border-color: var(--accent); }
+    .v2-logo .badge {
+      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Unbounded'; font-weight: 700; color: #fff; font-size: 16px;
+    }
+    .v2-logo .nm { font-family: 'Unbounded'; font-weight: 600; font-size: 14.5px; }
+    .v2-logo .nm small { display: block; font-family: 'Montserrat'; font-weight: 400; color: var(--text-muted); font-size: 12px; margin-top: 2px; }
+
+    /* ============ V3 — строка со спецификацией ============ */
+    .v3 { margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .v3-head { padding: 18px 26px; border-bottom: 1px solid var(--border); font-family: 'Unbounded'; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 12px; }
+    .v3-head svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+    .v3-row { display: flex; align-items: center; gap: 16px; padding: 18px 26px; border-bottom: 1px solid var(--border); }
+    .v3-row:last-child { border-bottom: none; }
+    .v3-check { width: 22px; height: 22px; border-radius: 50%; background: rgba(47,191,113,.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .v3-check svg { width: 13px; height: 13px; stroke: #2FBF71; fill: none; stroke-width: 2.5; }
+    .v3-name { font-weight: 600; font-size: 15px; }
+    .v3-tag { margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--text-muted); background: var(--surface-2); border: 1px solid var(--border); padding: 5px 12px; border-radius: 100px; }
+
+    /* ============ V4 — минимал: заголовок + чипы с иконкой ============ */
+    .v4 { margin-top: 24px; text-align: center; padding: 40px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    .v4 .t { font-family: 'Unbounded'; font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .v4 .s { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+    .v4-chips { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .v4-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Unbounded'; font-size: 14px; font-weight: 600;
+      padding: 12px 22px; border-radius: 100px;
+      background: var(--bg); border: 1px solid var(--border);
+    }
+    .v4-chip svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2; }
+
+    @media (max-width: 760px) {
+      .v1 { grid-template-columns: 1fr; }
+      .v2 { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mock-head">
+    <div class="container">
+      <span class="label">SidPro AUTO · мокапы</span>
+      <h1>Блок «Работаем на материалах» — 4 варианта</h1>
+      <p>Шрифты и цвета по брендбуку. Только подтверждённые материалы: Comfort Premium Viper и Integra (видны на фото ШВИ). Выбери вариант — поставлю на сайт.</p>
+    </div>
+  </div>
+
+  <!-- V1 -->
+  <section class="variant">
+    <div class="container">
+      <div class="variant-tag"><em>Вариант 1</em> Карточки с описанием</div>
+      <span class="sec-label">Материалы</span>
+      <div class="v1">
+        <div class="v1-card">
+          <div class="v1-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/></svg></div>
+          <h3>Comfort Premium Viper</h3>
+          <p>Виброизоляция премиум-класса — гасит вибрации кузова и убирает гул.</p>
+        </div>
+        <div class="v1-card">
+          <div class="v1-ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+          <h3>Comfort Premium Integra</h3>
+          <p>Шумопоглощающий слой — тишина в салоне на любой скорости.</p>
+        </div>
+        <div class="v1-card">
+          <div class="v1-ico"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>Только оригинал</h3>
+          <p>Работаем на проверенных материалах — тех, что не стыдно поставить себе.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V2 -->
+  <section class="variant">
+    <div class="container">
+      <div class="variant-tag"><em>Вариант 2</em> Крупные бейджи-логотипы</div>
+      <div class="v2">
+        <div class="v2-head">
+          <div class="t">Топовые материалы</div>
+          <div class="s">ШВИ всего авто — только премиум-линейка</div>
+        </div>
+        <div class="v2-logos">
+          <div class="v2-logo">
+            <div class="badge">CP</div>
+            <div class="nm">Comfort Premium<small>Viper · виброизоляция</small></div>
+          </div>
+          <div class="v2-logo">
+            <div class="badge">CP</div>
+            <div class="nm">Comfort Premium<small>Integra · шумопоглощение</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V3 -->
+  <section class="variant">
+    <div class="container">
+      <div class="variant-tag"><em>Вариант 3</em> Спецификация с галочками</div>
+      <div class="v3">
+        <div class="v3-head">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/></svg>
+          Материалы, которыми работаем
+        </div>
+        <div class="v3-row">
+          <span class="v3-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="v3-name">Comfort Premium Viper</span>
+          <span class="v3-tag">виброизоляция</span>
+        </div>
+        <div class="v3-row">
+          <span class="v3-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span class="v3-name">Comfort Premium Integra</span>
+          <span class="v3-tag">шумопоглощение</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V4 -->
+  <section class="variant" style="border-bottom: none;">
+    <div class="container">
+      <div class="variant-tag"><em>Вариант 4</em> Минимал по центру</div>
+      <div class="v4">
+        <div class="t">Работаем на премиум-материалах</div>
+        <div class="s">Тишина и защита — как в автомобилях бизнес-класса</div>
+        <div class="v4-chips">
+          <span class="v4-chip"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Comfort Premium Viper</span>
+          <span class="v4-chip"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Comfort Premium Integra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding: 40px 0 70px; text-align: center; color: var(--text-muted); font-size: 14.5px;">
+    Скажи номер варианта — поставлю на сайт вместо текущего блока.
+  </div>
+
+</body>
+</html>
