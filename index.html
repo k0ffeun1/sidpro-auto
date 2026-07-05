@@ -156,12 +156,16 @@
     .hero-content { max-width: 820px; }
     .hero-rating {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(20, 26, 34, 0.7); border: 1px solid var(--border);
-      border-radius: 100px; padding: 9px 20px;
-      font-size: 13.5px; font-weight: 600; color: var(--text-muted);
+      background: rgba(20, 26, 34, 0.55); border: 1px solid var(--border);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border-radius: 100px; padding: 9px 18px;
+      font-size: 13.5px; font-weight: 500; color: var(--text-muted);
       margin-bottom: clamp(20px, 3.4vh, 36px);
     }
-    .hero-rating .stars { color: #FFB930; letter-spacing: 2px; font-size: 12px; }
+    .hero-rating .stars { color: #FFB930; letter-spacing: 1px; font-size: 12px; }
+    .hero-rating b { font-family: var(--font-display); font-weight: 600; color: var(--text); }
+    .hero-rating .rt-div { width: 1px; height: 14px; background: var(--border); }
+    .hero-rating .rt-lbl { color: var(--text-muted); font-weight: 500; }
     .hero h1 {
       font-size: clamp(28px, min(4.4vw, 5.6vh), 50px);
       font-weight: 600;
@@ -709,7 +713,9 @@
       <div class="hero-content">
         <div class="hero-rating" style="visibility: hidden;" aria-hidden="true">
           <span class="stars">★★★★★</span>
-          <span>5.0 — рейтинг центра на картах</span>
+          <b>5.0</b>
+          <span class="rt-div"></span>
+          <span class="rt-lbl">Яндекс Карты</span>
         </div>
         <h1>Детейлинг, после которого машину <em>не узнать</em></h1>
         <p>Установочный детейлинг-центр в Саранске: шумоизоляция, автозвук, полировка, химчистка, тонировка и оптика — бережно, как для своей машины.</p>
