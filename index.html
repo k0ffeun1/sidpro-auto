@@ -383,6 +383,37 @@
     .ba-half .ba-tag.after { background: var(--accent); color: #fff; }
     .ba-caption { padding: 18px 24px; font-weight: 600; font-size: 15px; }
     .ba-caption span { color: var(--text-muted); font-weight: 400; font-size: 13.5px; display: block; margin-top: 2px; }
+    /* Интерактивная шторка «до/после» */
+    .ba-slider {
+      position: relative; width: 100%; aspect-ratio: 16 / 9;
+      overflow: hidden; background: #0b0f14; user-select: none; touch-action: pan-y;
+    }
+    .ba-slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+    .ba-slider .ba-img-top { will-change: clip-path; }
+    .ba-slider .ba-tag {
+      position: absolute; top: 14px; z-index: 3; pointer-events: none;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; backdrop-filter: blur(6px);
+    }
+    .ba-slider .ba-tag.before { left: 14px; background: rgba(11,15,20,.6); color: var(--text-muted); border: 1px solid var(--border); }
+    .ba-slider .ba-tag.after { right: 14px; background: var(--accent); color: #fff; }
+    .ba-divider { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #fff; z-index: 4; pointer-events: none; box-shadow: 0 0 14px rgba(0,0,0,.45); }
+    .ba-handle {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(11,15,20,.85); border: 2px solid #fff;
+      display: flex; align-items: center; justify-content: center; gap: 3px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.45);
+    }
+    .ba-handle svg { width: 15px; height: 15px; stroke: #fff; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .ba-range {
+      position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+      -webkit-appearance: none; appearance: none; background: transparent; cursor: ew-resize; z-index: 5;
+    }
+    .ba-range:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 46px; height: 100%; background: transparent; cursor: ew-resize; }
+    .ba-range::-moz-range-thumb { width: 46px; height: 100%; border: 0; background: transparent; cursor: ew-resize; }
+    .ba-range::-moz-range-track { background: transparent; }
 
     /* ===== Prices ===== */
     /* Комплексы полировки — карточки */
@@ -847,14 +878,23 @@
     <div class="container">
       <span class="label reveal">До / после</span>
       <h2 class="section-title reveal">Разница, которую видно</h2>
-      <p class="section-sub reveal">Реальные работы центра — без фотошопа. Наведите, чтобы рассмотреть детали.</p>
+      <p class="section-sub reveal">Реальные работы центра — без фотошопа. Потяните ползунок, чтобы увидеть разницу.</p>
       <div class="ba-grid">
         <div class="ba-card reveal">
-          <div class="ba-pair">
-            <div class="ba-half"><span class="ba-tag before">До</span><img src="assets/img/ba-headlight-before.webp" alt="Мутная фара до полировки" loading="lazy"></div>
-            <div class="ba-half"><span class="ba-tag after">После</span><img src="assets/img/ba-headlight-after.webp" alt="Прозрачная фара после полировки" loading="lazy"></div>
+          <div class="ba-slider" data-ba>
+            <img class="ba-img-base" src="assets/img/ba-lancer-after.webp" alt="Прозрачная фара после полировки — Mitsubishi Lancer" loading="lazy">
+            <img class="ba-img-top" src="assets/img/ba-lancer-before.webp" alt="Мутная фара до полировки — Mitsubishi Lancer" loading="lazy">
+            <span class="ba-tag before">До</span>
+            <span class="ba-tag after">После</span>
+            <div class="ba-divider">
+              <div class="ba-handle">
+                <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+              </div>
+            </div>
+            <input type="range" class="ba-range" min="0" max="100" value="50" step="0.1" aria-label="Сравнение фары: до и после полировки">
           </div>
-          <div class="ba-caption">Полировка и восстановление фар<span>Mitsubishi ASX · мутный пластик стал прозрачным, свет ярче</span></div>
+          <div class="ba-caption">Полировка и восстановление фар<span>Mitsubishi Lancer · мутный пластик стал прозрачным, свет ярче</span></div>
         </div>
       </div>
     </div>
@@ -1422,6 +1462,19 @@
         socialToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
     }
+
+    // Шторка «до/после»: ползунок открывает нижнюю картинку
+    document.querySelectorAll('[data-ba]').forEach(function (slider) {
+      var top = slider.querySelector('.ba-img-top');
+      var divider = slider.querySelector('.ba-divider');
+      var range = slider.querySelector('.ba-range');
+      function setPos(v) {
+        top.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
+        divider.style.left = v + '%';
+      }
+      range.addEventListener('input', function () { setPos(parseFloat(range.value)); });
+      setPos(parseFloat(range.value));
+    });
 
     // Services split: hover/click/keyboard switches photo
     var svcItems = document.querySelectorAll('#svcMenu .svc-item');
