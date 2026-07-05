@@ -179,6 +179,7 @@
       margin-bottom: clamp(24px, 4vh, 42px);
     }
     .hero-cta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .hero-sub-m { display: none; }   /* короткий подзаголовок только для мобилок */
     .hero-stats {
       display: flex; flex-wrap: wrap; gap: 24px 64px;
       margin-top: auto;                 /* прижимается к низу экрана */
@@ -602,10 +603,47 @@
       .cf-stage { height: 280px; }
       .cf-slide { height: 240px; }
       .cf-arrow { width: 42px; height: 42px; }
-      .hero-inner { padding-top: 96px; }
-      .hero h1 { max-width: none; }
-      .hero-content { margin-bottom: 40px; }
-      .hero-stats { gap: 20px 32px; }
+      /* ── Мобильный стартовый экран · Вариант 1 (минимал по центру) ── */
+      /* Шапка растворяется в фото: без сплошного фона и жёсткой границы */
+      .header {
+        background: linear-gradient(180deg, rgba(11,15,20,.9) 0%, rgba(11,15,20,.45) 55%, transparent 100%);
+        backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+        border-bottom: none;
+      }
+      /* Фон темнее + минимальный блюр */
+      .hero-bg img { filter: blur(2px) brightness(0.78); transform: scale(1.08); }
+      .hero-bg::after {
+        background: linear-gradient(180deg,
+          rgba(11,15,20,.72) 0%, rgba(11,15,20,.5) 26%,
+          rgba(11,15,20,.55) 54%, rgba(11,15,20,.96) 100%);
+      }
+      .hero::before { display: none; }
+
+      .hero-inner { padding-top: 92px; padding-bottom: 26px; justify-content: flex-end; }
+      .hero-content {
+        max-width: none; margin: 0; width: 100%;
+        display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;
+      }
+      .hero h1 { order: 1; max-width: none; margin: 0; font-size: 27px; line-height: 1.24; }
+      .hero p { display: none; }                        /* длинный десктоп-абзац скрыт */
+      .hero-sub-m { order: 2; display: block; color: var(--text-muted); font-size: 14px; line-height: 1.5; }
+      .hero-cta { order: 3; flex-direction: column; width: 100%; gap: 12px; margin: 0; }
+      .hero-cta .btn { width: 100%; }
+      /* Плашка 5.0 — смещена вниз, под кнопки */
+      .hero-rating {
+        order: 4; visibility: visible !important; margin: 2px 0 0;
+        background: rgba(20,26,34,.55); backdrop-filter: blur(8px);
+      }
+      /* Компактная строка цифр внизу (рейтинг-стат убран — он уже в плашке) */
+      .hero-stats {
+        margin-top: 6px; padding: 14px 0 0; gap: 0;
+        width: 100%; justify-content: space-between;
+        border-top: 1px solid rgba(255,255,255,.08);
+      }
+      .hero-stats .stat { flex: 1; text-align: center; }
+      .hero-stats .stat:first-child { display: none; }
+      .hero-stats .stat .num { font-size: 17px; }
+      .hero-stats .stat .cap { font-size: 11px; margin-top: 3px; }
       .hero-scroll { display: none; }
       .price-row { grid-template-columns: 1fr auto; }
       .price-row .time { display: none; }
@@ -676,6 +714,7 @@
         </div>
         <h1>Детейлинг, после которого машину <em>не узнать</em></h1>
         <p>Установочный детейлинг-центр в Саранске: шумоизоляция, автозвук, полировка, химчистка, тонировка и оптика — бережно, как для своей машины.</p>
+        <span class="hero-sub-m">Установочный детейлинг-центр в Саранске</span>
         <div class="hero-cta">
           <a class="btn" href="#contact">Записаться на детейлинг</a>
           <a class="btn btn-outline" href="tel:+79170731053">
